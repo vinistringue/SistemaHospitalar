@@ -148,6 +148,7 @@ public class GuiJTableBuscaPaciente extends javax.swing.JInternalFrame {
         /* Para limpar a tabela temos que setar o número de
          linhas para zero no default table model */
         dtm.setNumRows(0);
+        jtFiltro.setText("");
     }//fecha método
 
     /* Método responsável por popular novos dados na tabela. */

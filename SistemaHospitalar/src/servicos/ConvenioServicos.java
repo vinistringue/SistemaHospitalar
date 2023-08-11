@@ -17,10 +17,10 @@ public class ConvenioServicos {
        public ArrayList<Convenio> buscarConvenio() throws SQLException {
            
         // Busca da Fábrica um obj. ConvenioDAO
-        ConvenioDAO pacDAO = DAOFactory.getConvenioDAO();
+        ConvenioDAO convenioDAO = DAOFactory.getConvenioDAO();
         
         // Chamando método buscarConvenio para buscar todos os Convenios
-        return pacDAO.buscarcConvenios();
+        return convenioDAO.buscarcConvenios();
     }
 
 }
