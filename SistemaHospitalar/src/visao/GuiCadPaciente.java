@@ -161,41 +161,20 @@ public class GuiCadPaciente extends javax.swing.JInternalFrame {
     try {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Paciente pac = new Paciente();
+        // Preencher os dados do paciente a partir dos campos da tela
 
-        // ... (restante do código de preenchimento dos campos do paciente)
-
-        // Verificando se um convênio foi selecionado no JComboBox
-        if (jcConvenio.getSelectedIndex() != 0) {
-
-            // Obtendo o nome do convênio selecionado pelo usuário
-            String nomeConvenioSelecionado = jcConvenio.getSelectedItem().toString();
-
-            // Criando objeto ConvenioServicos para buscar o convênio no banco de dados
-            ConvenioServicos convenioServicos = ServicosFactory.getConvenioServicos();
-
-            // Buscando o convênio no banco de dados com base no nome selecionado pelo usuário
-            Convenio convenio = convenioServicos.buscarConvenioPorNome(nomeConvenioSelecionado);
-
-            // Atribuindo o ID do convênio ao paciente
-            pac.setConvenio(convenio.getIdConvenio());
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Selecione um convênio");
-            return; // Retorna para não prosseguir com o cadastro
-        }
-
-        // Criando objeto PacienteDAO para cadastrar o paciente no banco de dados
+        // Obter a referência ao PacienteDAO
         PacienteDAO pacDAO = DAOFactory.getPacienteDAO();
+        
+        // Chamar o método de cadastro
         pacDAO.cadastrarPaciente(pac);
 
-        // Mensagem de sucesso
         JOptionPane.showMessageDialog(this, "Paciente cadastrado com sucesso!");
 
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "ERRO! " + e.getMessage());
     }
-}
-// fecha método
+}// fecha método
 
     //apaga valores dos campos
     private void limpar() {

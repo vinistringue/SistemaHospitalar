@@ -14,8 +14,10 @@ import persistencia.ConexaoBanco;
  * ela é responsável por realizar as operações de cadastro e busca de convênios no banco de dados.
  */
 public class ConvenioDAO {
-    // ... (restante do código)
 
+    private ConexaoBanco conexao;
+    private Connection con;
+    
     public Convenio buscarConvenioPorNome(String nomeConvenio) throws SQLException {
         ResultSet rs;
 
@@ -41,7 +43,7 @@ public class ConvenioDAO {
             con.close();
         }
     }
-}
+    
 
     /* No construtor da classe, a instância de ConexaoBanco é criada e 
        armazenada no atributo conexao. 

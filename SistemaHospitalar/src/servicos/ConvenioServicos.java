@@ -23,8 +23,9 @@ public class ConvenioServicos {
         return convenioDAO.buscarConvenios();
     }
 
-    public Convenio buscarConvenioPorNome(String nomeConvenioSelecionado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Convenio buscarConvenioPorNome(String nomeConvenio) throws SQLException {
+        ConvenioDAO convenioDAO = DAOFactory.getConvenioDAO();
+        return convenioDAO.buscarConvenioPorNome(nomeConvenio);
     }
 
 }
