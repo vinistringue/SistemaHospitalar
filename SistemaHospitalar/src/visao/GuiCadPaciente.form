@@ -167,7 +167,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jlEmail1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="E-mal"/>
+            <Property name="text" type="java.lang.String" value="E-mail"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

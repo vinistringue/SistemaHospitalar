@@ -153,97 +153,61 @@ public class GuiJTableBuscaPaciente extends javax.swing.JInternalFrame {
     /* Método responsável por popular novos dados na tabela. */
     private void preencherTabela() {
         try {
-            //Buscando objeto PacienteServicos     
             PacienteServicos ps = ServicosFactory.getPacienteServicos();
-
-            /* Criando um ArrayList<Paciente> vazio
-         para receber o ArrayList com os dados */
-            ArrayList<Paciente> pac = new ArrayList<>();
-
-            //Recebendo o ArrayList cheio em pacientes
-            pac = ps.buscarPaciente();
-
-            /* Limpando qualquer dado existente 
-         na tabela */
+            ArrayList<Paciente> pac = ps.buscarPaciente();
             limparTabela();
 
-            /* For que preenche o modelo de tabela (dtm) buscando 
-         dados do ArrayList chamado p. */
             for (int i = 0; i < pac.size(); i++) {
                 dtm.addRow(new String[]{
                     String.valueOf(pac.get(i).getIdPaciente()),
-                    String.valueOf(pac.get(i).getNome()),
-                    String.valueOf(pac.get(i).getCpf()),
-                    String.valueOf(pac.get(i).getTelefone()),});
-            }//fecha for
+                    pac.get(i).getNome(),
+                    pac.get(i).getCpf(),
+                    pac.get(i).getTelefone()
+                });
+            }
 
-            /* Adicionando o modelo de tabela 
-         com os dados na tabela produto */
-            jtablePaciente.setModel(dtm);
+            jtablePaciente.setModel(dtm); // Define o modelo na tabela
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Erro! " + e.getMessage());
-        }//fecha catch
-
-    }//fecha método
+            JOptionPane.showMessageDialog(this, "Erro! " + e.getMessage());
+        }
+    }
 
     private void buscarFiltro() {
         try {
-            /* Se o text field não estiver vazio ele busca! */
             if (!jtFiltro.getText().isEmpty()) {
                 PacienteServicos ps = ServicosFactory.getPacienteServicos();
-
-                /* Buscando o valor da JComboBox. O método getSelectedItem
-         devolve um Object selecionado na JCombo */
                 String pesquisa = (String) jcomboFiltro.getSelectedItem();
-
-                //Criando variável que armazenará a consulta.
                 String query;
 
-                /* Testando o que o usuário escolheu no JComboBox. Conforme
-                 o que foi escolhido uma determinada consulta será montada. */
                 if (pesquisa.equalsIgnoreCase("Código Paciente")) {
-                    query = "where ID_PACIENTE = " + jtFiltro.getText() + "";
-                } else if (pesquisa.equalsIgnoreCase("Código Paciente")) {
+                    query = "where ID_PACIENTE = " + jtFiltro.getText();
+                } else if (pesquisa.equalsIgnoreCase("CPF")) {
                     query = "where CPF = '" + jtFiltro.getText() + "'";
                 } else {
                     query = "where NOME like '%" + jtFiltro.getText() + "%'";
                 }
 
-                ArrayList<Paciente> p = new ArrayList<>();
-
-                /* Buscando um ArrayList conforme o filtro que o usuário
-         solicitou. */
-                p = ps.buscarPacienteFiltro(query);
-
-                //Limpando a tabela
+                ArrayList<Paciente> p = ps.buscarPacienteFiltro(query);
                 limparTabela();
 
-                /* For que preenche o modelo de tabela (dtm) buscando 
-         dados do ArrayList chamado p. */
                 for (int i = 0; i < p.size(); i++) {
                     dtm.addRow(new String[]{
                         String.valueOf(p.get(i).getIdPaciente()),
                         p.get(i).getNome(),
                         p.get(i).getCpf(),
-                         p.get(i).getTelefone(),});
+                        p.get(i).getTelefone()
+                    });
+                }
 
-                }//fecha for
-
-                /* Adicionando o modelo de tabela 
-               com os dados na tabela produto */
                 jtablePaciente.setModel(dtm);
 
             } else {
-
                 preencherTabela();
-
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Erro ao buscar! " + e.getMessage());
-        }//fecha catch
+            JOptionPane.showMessageDialog(this, "Erro ao buscar! " + e.getMessage());
+        }
     }//fecha método
 
 

@@ -1,10 +1,8 @@
-
 package visao;
 
 import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
-
 
 public class Menu extends javax.swing.JFrame {
 
@@ -16,6 +14,7 @@ public class Menu extends javax.swing.JFrame {
         setExtendedState(MAXIMIZED_BOTH);
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,17 +102,24 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
     private void abrirCadPaciente() {
         GuiCadPaciente gcp = new GuiCadPaciente();
         jAreaTrabalho.add(gcp);
         gcp.setVisible(true);
     }//fecha método
 
+    
     private void abrirJanelaTable() {
-        GuiJTableBuscaPaciente gmp = new GuiJTableBuscaPaciente();
-        jAreaTrabalho.add(gmp);
-        gmp.setVisible(true);
+        try {
+            GuiJTableBuscaPaciente gmp = new GuiJTableBuscaPaciente();
+            jAreaTrabalho.add(gmp);
+            gmp.setVisible(true);
+        } catch (Exception e) {
+            // Trata o erro e exibe a mensagem
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao abrir a tela de busca de pacientes: " + e.getMessage());
+        }
     }//fecha método
 
     private void jmiCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadProdutoActionPerformed
